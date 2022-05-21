@@ -15,7 +15,12 @@ const userschema = new Schema(
       type: String,
       required: true,
     },
-  },
+    embedcolor: {
+      type: String,
+      required: false,
+      default: "#2f3136",
+  }
+},
   { timestamps: true }
 );
 
