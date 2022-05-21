@@ -16,18 +16,33 @@ module.exports = {
 // what should go in place for "user".findOne as it doesn't mean anything userschema?
   async execute(interaction) {
     if (interaction.options.getUser("user")) {
-      userschema.findOne({ userId: interaction.options.getUser("user").id}).then(result => {
+     await userschema.findOne({ userId: interaction.options.getUser("user").id }).then(result => {
         if (!result) {
-          const errorembed = new MessageEmbed()
-          .setColor("#5865f4")
+          const errorembed1 = new MessageEmbed()
+          .setColor("RED")
           .setTitle("Wopps")
-          .setDescription("This user doesn't have a portfolio yet. Use /register to create one")
+          .setDescription("This user doesn't have a portfolio yet.")
           .setTimestamp();
 
-          interaction.reply({ embeds: [errorembed] });
+         interaction.reply({ embeds: [errorembed1] });
         }
       });
-    } else {
+
+      } else if (interaction.options.getUser("user")) {
+       await userschema.findOne({ userId: interaction.user.id }).then(result => {
+          if (!result) {
+            const errorembed = new MessageEmbed()
+            .setColor("RED")
+            .setTitle("Wopps")
+            .setDescription("You dont seem to have a portfolio yet.")
+            .setTimestamp();
+  
+            interaction.reply({ embeds: [errorembed] });
+          }
+        });
+
+  } else {
+
     const portfolioembed = new MessageEmbed()
 
       .setColor("#5865f4")
@@ -65,3 +80,4 @@ module.exports = {
     }
   },
 };
+
