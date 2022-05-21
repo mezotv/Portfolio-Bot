@@ -14,20 +14,19 @@ module.exports = {
         const errorembed = new MessageEmbed()
           .setColor("RED")
           .setTitle("Wopps")
-          .setDescription("You already have a portfolio")
-          .setTimestamp();
+          .setDescription("You already have a portfolio");
 
-        interaction.reply({ embeds: [errorembed] });
+        interaction.reply({ embeds: [errorembed], ephemeral: true });
       } else {
         userprofile.create({
           userId: interaction.user.id,
-          userSince: Date.now() / 1000 | 0
+          userSince: (Date.now() / 1000) | 0,
         });
         const registerembed = new MessageEmbed()
           .setColor("GREEN")
           .setTitle("Success")
-          .setDescription("You now own a portfolio")
-          .setTimestamp();
+          .setDescription("You now own a portfolio");
+
         interaction.reply({
           embeds: [registerembed],
         });

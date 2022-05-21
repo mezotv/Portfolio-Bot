@@ -13,7 +13,7 @@ module.exports = {
       .setTitle("Portfolio Bot")
       .setDescription('Show off your projects with your own native Discord Portfolio')
       .addField('Commands', `Help, Ping`)
-      .setTimestamp();
+      
 
       const button = new MessageActionRow()
       .addComponents(

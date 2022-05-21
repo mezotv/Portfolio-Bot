@@ -18,7 +18,7 @@ module.exports = {
           inline: false,
         }
       )
-      .setTimestamp();
+      
 
     await interaction.reply({
       embeds: [pingembed]
