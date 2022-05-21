@@ -8,6 +8,6 @@ module.exports = async (client) => {
       const event = require(`../events/${file}`);
      let eventName = file.split(".")[0];
       client.on(eventName, event.bind(client));
-    });
+    }); 
   });
 };

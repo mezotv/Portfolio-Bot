@@ -14,7 +14,7 @@ const client = new Client({
     "GUILD_INVITES",
     "GUILD_VOICE_STATES",
     "GUILD_MESSAGE_REACTIONS",
-    "GUILD_MESSAGE_TYPING",
+    "GUILD_MESSAGE_TYPING", 
     "DIRECT_MESSAGES",
     "GUILD_PRESENCES",
     "GUILD_MESSAGES",
@@ -25,9 +25,14 @@ const client = new Client({
 
 /* Basically loading the event and command loader ironic right */
 require("./util/eventLoader")(client);
+require("./util/buttonLoader")(client);
 
 /* It's creating a new collection for the commands. */
 client.commands = new Collection();
 
 /* Logging the bot in. */
 client.login(process.env.TOKEN);
+
+
+
+ 

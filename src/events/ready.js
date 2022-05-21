@@ -3,6 +3,7 @@ const { Routes } = require("discord-api-types/v9");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const { ChalkAdvanced } = require("chalk-advanced");
+const { loadDB } = require("../util/dbHandler");
 
 module.exports = async (client) => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
@@ -20,7 +21,6 @@ module.exports = async (client) => {
   const CLIENT_ID = client.user.id;
 
   const rest = new REST({
-    version: "9",
   }).setToken(process.env.TOKEN);
 
   (async () => {
@@ -29,7 +29,7 @@ module.exports = async (client) => {
         await rest.put(Routes.applicationCommands(CLIENT_ID), {
           body: commands,
         });
-        console.log(ChalkAdvanced.green("Successfully registered commands globally"));
+        console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands globally")}`);
 
       } else {
         await rest.put(
@@ -39,7 +39,8 @@ module.exports = async (client) => {
           }
         );
 
-        console.log(ChalkAdvanced.red("Successfully registered commands locally"));
+        console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands locally")}`);
+        loadDB()
       }
     } catch (err) {
       if (err) console.error(err);
