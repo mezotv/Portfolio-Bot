@@ -45,7 +45,7 @@ module.exports = {
           } else {
             const portfolioembed = new MessageEmbed()
 
-              .setColor("#5865f4")
+              .setColor(`${result.embedcolor}`)
               .setTitle(
                 `${interaction.options.getUser("user").username}'s portfolio`
               )
@@ -55,19 +55,26 @@ module.exports = {
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("977331897866809344-mainmenu")
+                .setCustomId("mainmenu")
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("977331897866809344-previouspage")
+                .setCustomId("projects")
                 .setLabel("Projects")
-                .setStyle("PRIMARY"),
+                .setStyle("PRIMARY")
+                .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("977331897866809344-nextpage")
+                .setCustomId("occupation")
+                .setLabel("Occupation")
+                .setStyle("PRIMARY")
+                .setEmoji("💲"),
+              new MessageButton()
+                .setCustomId("quicklinks")
                 .setLabel("Quicklinks")
-                .setStyle("PRIMARY"),
+                .setStyle("PRIMARY")
+                .setEmoji("🔗"),
               new MessageButton()
-                .setCustomId(`977331897866809344-edit`)
+                .setCustomId(`edit`)
                 .setLabel("🔧")
                 .setStyle("SECONDARY")
             );
@@ -94,7 +101,7 @@ module.exports = {
           } else {
             const portfolioembed = new MessageEmbed()
 
-              .setColor("#5865f4")
+              .setColor(`${result.embedcolor}`)
               .setTitle(`${interaction.user.username}'s profile`)
               .setThumbnail(interaction.user.avatarURL())
               .setDescription(`> ${result.description}`)
@@ -102,19 +109,26 @@ module.exports = {
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("977331897866809344-mainmenu")
+                .setCustomId("mainmenu")
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("977331897866809344-previouspage")
+                .setCustomId("projects")
                 .setLabel("Projects")
-                .setStyle("PRIMARY"),
+                .setStyle("PRIMARY")
+                .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("977331897866809344-nextpage")
+                .setCustomId("occupation")
+                .setLabel("Occupation")
+                .setStyle("PRIMARY")
+                .setEmoji("💲"),
+              new MessageButton()
+                .setCustomId("quicklinks")
                 .setLabel("Quicklinks")
-                .setStyle("PRIMARY"),
+                .setStyle("PRIMARY")
+                .setEmoji("🔗"),
               new MessageButton()
-                .setCustomId(`977331897866809344-edit`)
+                .setCustomId(`edit`)
                 .setLabel("🔧")
                 .setStyle("SECONDARY")
             );

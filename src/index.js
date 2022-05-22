@@ -3,6 +3,9 @@ const { Collection, Client } = require("discord.js");
 
 require("dotenv").config();
 
+/* Clear console */
+console.clear()
+
 /* It's creating a new client with the needed intents. */
 const client = new Client({
   intents: [
