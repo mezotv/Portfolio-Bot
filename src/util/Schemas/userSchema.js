@@ -12,7 +12,7 @@ const userschema = new Schema(
       default: "This user has no description yet!",
     },
     userSince: {
-      type: String,
+      type: Number,
       required: true,
     },
     embedcolor: {
