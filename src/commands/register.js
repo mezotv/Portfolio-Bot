@@ -9,14 +9,14 @@ module.exports = {
     .setDescription("Register a new user"),
 
   async execute(interaction) {
-    userprofile.findOne({ userId: interaction.user.id }).then((result) => {
+    userprofile.findOne({ userId: interaction.user.id }).then(async (result) => {
       if (result) {
         const errorembed = new MessageEmbed()
           .setColor("RED")
           .setTitle("Wopps")
           .setDescription("You already have a portfolio");
 
-        interaction.reply({ embeds: [errorembed], ephemeral: true });
+          await interaction.reply({ embeds: [errorembed], ephemeral: true });
       } else {
         userprofile.create({
           userId: interaction.user.id,
@@ -27,8 +27,8 @@ module.exports = {
           .setTitle("Success")
           .setDescription("You now own a portfolio");
 
-        interaction.reply({
-          embeds: [registerembed],
+       await interaction.reply({
+          embeds: [registerembed], ephemeral: true
         });
       }
     });

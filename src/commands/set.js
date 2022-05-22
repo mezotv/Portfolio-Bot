@@ -28,12 +28,23 @@ module.exports = {
             .setDescription("The color as a hex value!")
             .setRequired(true)
         )
-    ),
+    )
+    .addSubcommand((subcommand) =>
+    subcommand
+      .setName("occupation")
+      .setDescription("Add your current Occupation")
+      .addStringOption((option) =>
+        option
+          .setName("occupation")
+          .setDescription("The color as a hex value!")
+          .setRequired(true)
+      )
+  ),
 
   async execute(interaction) {
     switch (interaction.options.getSubcommand()) {
       case "description": {
-        userprofile.findOne({ userId: interaction.user.id }).then((result) => {
+        userprofile.findOne({ userId: interaction.user.id }).then(async (result) => {
           if (!result) {
             const errorembed = new MessageEmbed()
               .setColor("RED")
@@ -42,7 +53,7 @@ module.exports = {
                 "You dont seem to have a portfolio yet. You can create one using **/register**"
               );
 
-            interaction.reply({ embeds: [errorembed], ephemeral: true });
+              await interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
             result.description = interaction.options.getString("content");
             result.save();
@@ -56,7 +67,7 @@ module.exports = {
                 )}**`
               );
 
-            interaction.reply({
+              await interaction.reply({
               embeds: [savedDescriptionEmbed],
               ephemeral: true,
             });
@@ -65,7 +76,7 @@ module.exports = {
         break;
       }
       case "color": {
-        userprofile.findOne({ userId: interaction.user.id }).then((result) => {
+        userprofile.findOne({ userId: interaction.user.id }).then(async (result) => {
           if (!result) {
             const errorembed = new MessageEmbed()
               .setColor("RED")
@@ -94,7 +105,7 @@ module.exports = {
                 `You successfully set your new embed color to: **${color}**`
               );
 
-            interaction.reply({
+              await interaction.reply({
               embeds: [savedEmbedColor],
               ephemeral: true,
             });
@@ -104,7 +115,7 @@ module.exports = {
               .setTitle('Wopps')
               .setDescription('The color you entered is not a valid hex value!')
 
-              return interaction.reply({ embeds: [errorEmbedColor], ephemeral: true })
+              return await interaction.reply({ embeds: [errorEmbedColor], ephemeral: true })
             }
           }
         });

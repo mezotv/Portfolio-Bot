@@ -17,7 +17,7 @@ module.exports = {
     if (interaction.options.getUser("user")) {
       await userschema
         .findOne({ userId: interaction.options.getUser("user").id })
-        .then((result) => {
+        .then(async (result) => {
           if (!result) {
             if (interaction.options.getUser("user").id == interaction.user.id) {
               const errorembed = new MessageEmbed()
@@ -43,15 +43,34 @@ module.exports = {
               });
             }
           } else {
-            const portfolioembed = new MessageEmbed()
+            let badges = '`None`';
+            let verified = '';
+            if(result.badges.length !== 0) badges = ''
+            if(result.badges.includes('staff')) badges += '<:Staff:977994687312969738> ';
+            if(result.badges.includes('developer')) badges += '<:Developer:977996164458766396> ';
+            if(result.badges.includes('verified')) verified = '<:Verified:977994824038875166> ';
+            if(result.badges.includes('partner')) badges += '<:Partner:977994687208116274> ';
+            if(result.badges.includes('featured')) badges += '<:Featured:977994686851579906> ';
 
+            const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
               .setTitle(
-                `${interaction.options.getUser("user").username}'s portfolio`
+                `${verified} ${interaction.options.getUser("user").username}'s portfolio`
               )
               .setThumbnail(interaction.options.getUser("user").avatarURL())
               .setDescription(`> ${result.description}`)
-              .addField("Portfolio created:", `<t:${result.userSince}:F>`);
+              .addFields(
+                {
+                  name: "User Badges:",
+                  value: `${badges}`,
+                  inline: false,
+                },
+                {
+                  name: "Portfolio created:",
+                  value: `<t:${result.userSince}:F>`, 
+                  inline: false
+
+                });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
@@ -79,7 +98,7 @@ module.exports = {
                 .setStyle("SECONDARY")
             );
 
-            interaction.reply({
+           await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
             });
@@ -88,7 +107,7 @@ module.exports = {
     } else {
       await userschema
         .findOne({ userId: interaction.user.id })
-        .then((result) => {
+        .then(async (result) => {
           if (!result) {
             const errorembed = new MessageEmbed()
               .setColor("RED")
@@ -99,13 +118,32 @@ module.exports = {
 
             return interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
-            const portfolioembed = new MessageEmbed()
+            let badges = '`None`';
+            let verified = '';
+            if(result.badges.length !== 0) badges = ''
+            if(result.badges.includes('staff')) badges += '<:Staff:977994687312969738> ';
+            if(result.badges.includes('developer')) badges += '<:Developer:977996164458766396> ';
+            if(result.badges.includes('verified')) verified = '<:Verified:977994824038875166>';
+            if(result.badges.includes('partner')) badges += '<:Partner:977994687208116274> ';
+            if(result.badges.includes('featured')) badges += '<:Featured:977994686851579906> ';
 
+            const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
-              .setTitle(`${interaction.user.username}'s profile`)
+              .setTitle(`${verified} ${interaction.user.username}'s profile`)
               .setThumbnail(interaction.user.avatarURL())
               .setDescription(`> ${result.description}`)
-              .addField("Portfolio created:", `<t:${result.userSince}:F>`);
+              .addFields(
+                {
+                  name: "User Badges:",
+                  value: `${badges}`,
+                  inline: false,
+                },
+                {
+                  name: "Portfolio created:",
+                  value: `<t:${result.userSince}:F>`, 
+                  inline: false
+
+                });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
@@ -133,7 +171,7 @@ module.exports = {
                 .setStyle("SECONDARY")
             );
 
-            interaction.reply({
+            await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
             });

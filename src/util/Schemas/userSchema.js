@@ -19,7 +19,12 @@ const userschema = new Schema(
       type: String,
       required: false,
       default: "#2f3136",
-  }
+    },
+    badges: {
+      type: Array,
+      required: false,
+      default: []
+    }
 },
   { timestamps: true }
 );

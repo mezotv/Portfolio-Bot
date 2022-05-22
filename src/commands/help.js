@@ -18,9 +18,13 @@ module.exports = {
       const button = new MessageActionRow()
       .addComponents(
         new MessageButton()
-      .setLabel('Invite')
-      .setStyle('LINK')
-      .setURL(`https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=0&scope=bot%20applications.commands`),
+          .setLabel('Invite')
+          .setStyle('LINK')
+          .setURL(`https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=0&scope=bot%20applications.commands`),
+        new MessageButton()
+          .setLabel('Github')
+          .setStyle('LINK')
+          .setURL(`https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=0&scope=bot%20applications.commands`),
       )
 
     await interaction.reply({
