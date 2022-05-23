@@ -159,7 +159,7 @@ module.exports = {
                             .setColor("#5865f4")
                             .setTitle("Like")
                             .setDescription(
-                              "You removed your like on this portfolio."
+                              "You removed your like from this portfolio."
                             );
 
                           await buttonInteraction.reply({
@@ -230,7 +230,7 @@ module.exports = {
                 "You dont seem to have a portfolio yet. You can create one using **/register**"
               );
 
-            return interaction.reply({ embeds: [errorembed], ephemeral: true });
+            return await interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
             let badges = "`None`";
             let verified = "";
