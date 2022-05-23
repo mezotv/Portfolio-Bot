@@ -27,7 +27,7 @@ module.exports = {
                   "You dont seem to have a portfolio yet. You can create one using **/register**"
                 );
 
-              return interaction.reply({
+              return await interaction.reply({
                 embeds: [errorembed],
                 ephemeral: true,
               });
@@ -37,7 +37,7 @@ module.exports = {
                 .setTitle("Wopps")
                 .setDescription("This user doesn't have a portfolio yet.");
 
-              return interaction.reply({
+              return await interaction.reply({
                 embeds: [errorembed],
                 ephemeral: true,
               });
@@ -209,7 +209,7 @@ module.exports = {
                       "This button does not seem to work properly."
                     );
 
-                  buttonInteraction.reply({
+                    await buttonInteraction.reply({
                     embeds: [errorembed],
                     ephemeral: true,
                   });
