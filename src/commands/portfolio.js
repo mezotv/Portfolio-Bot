@@ -103,11 +103,7 @@ module.exports = {
                 .setCustomId("quicklinks")
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
-                .setEmoji("🔗"),
-              new MessageButton()
-                .setCustomId(`like`)
-                .setLabel("🤍")
-                .setStyle("DANGER")
+                .setEmoji("🔗")
             );
 
             await interaction.reply({
@@ -119,88 +115,6 @@ module.exports = {
               interaction.channel.createMessageComponentCollector();
             listener.on("collect", async (buttonInteraction) => {
               switch (buttonInteraction.customId) {
-                case "like":
-                  if (buttonInteraction.user.id == result.userId) {
-                    const errorembed = new MessageEmbed()
-                      .setColor("RED")
-                      .setTitle("Wopps")
-                      .setDescription("You can't like your own portfolio.");
-
-                    return await buttonInteraction.reply({
-                      embeds: [errorembed],
-                      ephemeral: true,
-                    });
-                  } else if (result.likes.includes(buttonInteraction.user.id)) {
-                    userschema
-                      .findOne({ id: buttonInteraction.user.id })
-                      .then(async (result1) => {
-                        if (!result1) {
-                          const errorembed = new MessageEmbed()
-                            .setColor("RED")
-                            .setTitle("Wopps")
-                            .setDescription(
-                              "You dont seem to have a portfolio yet. You can create one using **/register**"
-                            );
-
-                          return await interaction.reply({
-                            embeds: [errorembed],
-                            ephemeral: true,
-                          });
-                        } else {
-                          result.likes.splice(
-                            result.likes.findIndex(
-                              (l) => l == buttonInteraction.user.id
-                            ),
-                            1
-                          );
-                          result.save();
-
-                          const likeEmbed = new MessageEmbed()
-                            .setColor("#5865f4")
-                            .setTitle("Like")
-                            .setDescription(
-                              "You removed your like on this portfolio."
-                            );
-
-                          await buttonInteraction.reply({
-                            embeds: [likeEmbed],
-                            ephemeral: true,
-                          });
-                        }
-                      });
-                  } else {
-                    userschema
-                      .findOne({ id: buttonInteraction.user.id })
-                      .then(async (result1) => {
-                        if (!result1) {
-                          const errorembed = new MessageEmbed()
-                            .setColor("RED")
-                            .setTitle("Wopps")
-                            .setDescription(
-                              "You dont seem to have a portfolio yet. You can create one using **/register**"
-                            );
-
-                          return await interaction.reply({
-                            embeds: [errorembed],
-                            ephemeral: true,
-                          });
-                        } else {
-                          result.likes.push(buttonInteraction.user.id);
-                          result.save();
-
-                          const likeEmbed = new MessageEmbed()
-                            .setColor("#5865f4")
-                            .setTitle("Like")
-                            .setDescription("You liked this portfolio.");
-
-                          await buttonInteraction.reply({
-                            embeds: [likeEmbed],
-                            ephemeral: true,
-                          });
-                        }
-                      });
-                  }
-                  break;
                 default:
                   const errorembed = new MessageEmbed()
                     .setColor("RED")
@@ -209,7 +123,7 @@ module.exports = {
                       "This button does not seem to work properly."
                     );
 
-                    await buttonInteraction.reply({
+                  await buttonInteraction.reply({
                     embeds: [errorembed],
                     ephemeral: true,
                   });
