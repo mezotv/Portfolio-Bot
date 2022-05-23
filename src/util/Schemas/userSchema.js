@@ -24,6 +24,11 @@ const userschema = new Schema(
       type: Array,
       required: false,
       default: []
+    },
+    likes: {
+      type: Array,
+      required: false,
+      default: []
     }
 },
   { timestamps: true }
