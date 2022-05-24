@@ -17,7 +17,6 @@ module.exports = {
       await userschema
         .findOne({ userId: interaction.options.getUser("user")?.id || interaction.user.id })
         .then(async (result) => {
-          console.log(result)
           if (!result) {
             let errorembed = new MessageEmbed()
             .setColor("RED")
@@ -166,7 +165,7 @@ module.exports = {
                       .setTitle("Like")
                       .setDescription("You liked this portfolio.");
 
-                    return await buttonInteraction.reply({
+                    await buttonInteraction.reply({
                       embeds: [likeEmbed],
                       ephemeral: true,
                       fetchReply: true
@@ -182,7 +181,7 @@ module.exports = {
                       "This button does not seem to work properly."
                     );
 
-                    return await buttonInteraction.reply({
+                    await buttonInteraction.reply({
                     embeds: [errorembed],
                     ephemeral: true,
                   });
