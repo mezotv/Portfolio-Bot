@@ -197,6 +197,7 @@ module.exports = {
                     ephemeral: true,
                   });
                   
+                  await interaction.deferReply();
                   break;
               }
             });
