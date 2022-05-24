@@ -108,6 +108,17 @@ module.exports = {
                 .setEmoji("🔗"),
             );
 
+            setTimeout(function () {
+              components.components[0].setDisabled(true);
+              components.components[1].setDisabled(true);
+              components.components[2].setDisabled(true);
+              components.components[3].setDisabled(true);
+              components.components[4].setDisabled(true);
+    
+              interaction.editReply({embeds: [portfolioembed], components: [components]})
+        
+            }, 120000);
+
             if(user.id == interaction.user.id) {
               components.addComponents(
                 new MessageButton()
@@ -125,7 +136,7 @@ module.exports = {
               ) 
             }
             
-            await interaction.reply({
+            let sentMessage = await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
             });
@@ -185,10 +196,13 @@ module.exports = {
                     embeds: [errorembed],
                     ephemeral: true,
                   });
+                  
                   break;
               }
             });
           }
         });
+
+        
   },
 };
