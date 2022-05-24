@@ -128,7 +128,7 @@ module.exports = {
                 .setDisabled(true),
               )
             } else {
-              components .addComponents(
+              components.addComponents(
                 new MessageButton()
                 .setCustomId(`like`)
                 .setLabel("🤍")

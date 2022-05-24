@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,15 +13,36 @@ module.exports = {
       .setTitle(":ping_pong:  Pong!")
       .addFields(
         {
+          name: "**Client** latency",
+          value: `> **${Math.abs(
+            Date.now() - interaction.createdTimestamp
+          )}**ms`,
+          inline: false,
+        },
+        {
           name: "**Api** latency",
           value: `> **${Math.round(client.ws.ping)}**ms`,
           inline: false,
         }
       )
+      const button = new MessageActionRow().addComponents(
+        new MessageButton()
+          .setLabel("Discord latency")
+          .setStyle("LINK")
+          .setEmoji("💻")
+          .setURL(
+            'https://discordstatus.com/'
+          ),
+      );
       
-
     await interaction.reply({
-      embeds: [pingembed]
+      embeds: [pingembed],
+      components: [button]
     });
+    setTimeout(function () {
+      button.components[0].setDisabled(true);
+      interaction.editReply({embeds: [pingembed], components: [button]})
+
+    }, 120000);
   },
 };
