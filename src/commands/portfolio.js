@@ -108,14 +108,14 @@ module.exports = {
                 .setEmoji("🔗"),
             );
 
-            setTimeout(function () {
+            setTimeout(async function () {
               components.components[0].setDisabled(true);
               components.components[1].setDisabled(true);
               components.components[2].setDisabled(true);
               components.components[3].setDisabled(true);
               components.components[4].setDisabled(true);
     
-              interaction.editReply({embeds: [portfolioembed], components: [components]})
+             await interaction.editReply({embeds: [portfolioembed], components: [components]})
         
             }, 120000);
 
