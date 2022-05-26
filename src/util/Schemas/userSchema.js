@@ -29,6 +29,10 @@ const userschema = new Schema(
       type: Array,
       required: false,
       default: []
+    },
+    occupation: {
+      type: String,
+      required: false,
     }
 },
   { timestamps: true }

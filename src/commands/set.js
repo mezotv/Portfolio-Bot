@@ -36,7 +36,7 @@ module.exports = {
       .addStringOption((option) =>
         option
           .setName("occupation")
-          .setDescription("The color as a hex value!")
+          .setDescription("Your current occupations")
           .setRequired(true)
       )
   ),
@@ -69,6 +69,38 @@ module.exports = {
 
               await interaction.reply({
               embeds: [savedDescriptionEmbed],
+              ephemeral: true,
+            });
+          }
+        });
+        break;
+      }
+      case "occupation": {
+        userprofile.findOne({ userId: interaction.user.id }).then(async (result) => {
+          if (!result) {
+            const errorembed = new MessageEmbed()
+              .setColor("RED")
+              .setTitle("Wopps")
+              .setDescription(
+                "You dont seem to have a portfolio yet. You can create one using **/register**"
+              );
+
+              await interaction.reply({ embeds: [errorembed], ephemeral: true });
+          } else {
+            result.occupation = interaction.options.getString("occupation");
+            result.save();
+
+            const savedOccupationEmbed = new MessageEmbed()
+              .setColor("#2f3037")
+              .setTitle("Set occupation!")
+              .setDescription(
+                `You successfully set your new occupation to: **${interaction.options.getString(
+                  "occupation"
+                )}**`
+              );
+
+              await interaction.reply({
+              embeds: [savedOccupationEmbed],
               ephemeral: true,
             });
           }
@@ -117,6 +149,7 @@ module.exports = {
 
               return await interaction.reply({ embeds: [errorEmbedColor], ephemeral: true })
             }
+            
           }
         });
       }
