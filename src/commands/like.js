@@ -27,7 +27,7 @@ module.exports = {
       });
     } else {
       userschema
-      .findOne({ userId: interaction.options.getUser("user")?.id || interaction.user.id })
+      .findOne({ userId: interaction.options.getUser("user").id })
         .then((result) => {
           if (result.likes.includes(interaction.user.id)) {
             userschema
