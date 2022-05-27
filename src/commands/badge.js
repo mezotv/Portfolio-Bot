@@ -138,7 +138,7 @@ module.exports = {
                         .setTitle("Badges Added")
                         .setDescription('The badges ' + badges.join(', ') + ' have been added to the user')
 
-                        await selectMenu.reply({ embeds: [badgeEmbed], ephemeral: true })
+                        return await selectMenu.reply({ embeds: [badgeEmbed], ephemeral: true })
                     }
             })
 
