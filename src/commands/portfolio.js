@@ -109,6 +109,17 @@ module.exports = {
               embeds: [portfolioembed],
               components: [components],
             });
+            
+            setTimeout(function () {
+              components.components[0].setDisabled(true);
+              components.components[1].setDisabled(true);
+              components.components[2].setDisabled(true);
+              components.components[3].setDisabled(true);
+              components.components[4].setDisabled(true);
+    
+              interaction.editReply({embeds: [portfolioembed], components: [components]})
+        
+            }, 120000);
 
             const listener =
               interaction.channel.createMessageComponentCollector();
