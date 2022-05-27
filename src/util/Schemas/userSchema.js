@@ -33,6 +33,49 @@ const userschema = new Schema(
     occupation: {
       type: String,
       required: false,
+      default: 'Unemployed'
+    },
+    links: {
+      github: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      instagram: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      linkedin: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      twitch: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      youtube: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      twitter: {
+        type: String,
+        required: false,
+        default: 'none'
+      },
+      customwebsite: {
+        type: String,
+        required: false,
+        default: 'none'
+      }
+    },
+    projects: {
+      type: Array,
+      required: false,
+      default: []
     }
 },
   { timestamps: true }

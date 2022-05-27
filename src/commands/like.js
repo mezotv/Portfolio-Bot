@@ -27,59 +27,55 @@ module.exports = {
       });
     } else {
       userschema
-      .findOne({ userId: interaction.options.getUser("user").id })
+        .findOne({ userId: interaction.options.getUser("user").id })
         .then((result) => {
-          if (result.likes.includes(interaction.user.id)) {
-            userschema
-              .findOne({ userId: interaction.user.id })
-              .then(async (result1) => {
-                if (!result1) {
-                  const errorembed = new MessageEmbed()
-                    .setColor("RED")
-                    .setTitle("Wopps")
-                    .setDescription(
-                      "You dont seem to have a portfolio yet. You can create one using **/register**"
-                    );
-
-                  return await interaction.reply({
-                    embeds: [errorembed],
-                    ephemeral: true,
-                  });
-                } else {
-                  result.likes.splice(
-                    result.likes.findIndex((l) => l == interaction.user.id),
-                    1
+          userschema
+            .findOne({ userId: interaction.user.id })
+            .then(async (result1) => {
+              if (!result) {
+                const errorembed = new MessageEmbed()
+                  .setColor("RED")
+                  .setTitle("Wopps")
+                  .setDescription(
+                    "This user does not seem to have a portfolio yet."
                   );
-                  result.save();
 
-                  const likeEmbed = new MessageEmbed()
-                    .setColor("#5865f4")
-                    .setTitle("Like")
-                    .setDescription("You removed your like on this portfolio.");
+                return await interaction.reply({
+                  embeds: [errorembed],
+                  ephemeral: true,
+                });
+              }
+              if (!result1) {
+                const errorembed = new MessageEmbed()
+                  .setColor("RED")
+                  .setTitle("Wopps")
+                  .setDescription(
+                    "You dont seem to have a portfolio yet. You can create one using **/register**"
+                  );
 
-                  await interaction.reply({
-                    embeds: [likeEmbed],
-                    ephemeral: true,
-                  });
-                }
-              });
-          } else {
-            userschema
-              .findOne({ userId: interaction.user.id })
-              .then(async (result1) => {
-                if (!result1) {
-                  const errorembed = new MessageEmbed()
-                    .setColor("RED")
-                    .setTitle("Wopps")
-                    .setDescription(
-                      "You dont seem to have a portfolio yet. You can create one using **/register**"
-                    );
+                return await interaction.reply({
+                  embeds: [errorembed],
+                  ephemeral: true,
+                });
+              }
+              if (result.likes.includes(interaction.user.id)) {
+                result.likes.splice(
+                  result.likes.findIndex((l) => l == interaction.user.id),
+                  1
+                );
+                result.save();
 
-                  return await interaction.reply({
-                    embeds: [errorembed],
-                    ephemeral: true,
-                  });
-                } else {
+                const likeEmbed = new MessageEmbed()
+                  .setColor("#5865f4")
+                  .setTitle("Like")
+                  .setDescription("You removed your like on this portfolio.");
+
+                await interaction.reply({
+                  embeds: [likeEmbed],
+                  ephemeral: true,
+                });
+              } else {
+                {
                   result.likes.push(interaction.user.id);
                   result.save();
 
@@ -93,8 +89,8 @@ module.exports = {
                     ephemeral: true,
                   });
                 }
-              });
-          }
+              }
+            });
         });
     }
   },

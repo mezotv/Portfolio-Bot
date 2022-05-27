@@ -60,8 +60,7 @@ module.exports = {
             const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
               .setTitle(
-                `${verified} ${
-                  interaction.options.getUser("user").username
+                `${verified} ${interaction.options.getUser("user").username
                 }'s portfolio`
               )
               .setThumbnail(interaction.options.getUser("user").avatarURL())
@@ -86,21 +85,21 @@ module.exports = {
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("mainmenu")
+                .setCustomId("mainmenu-" + result.userID)
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("projects")
+                .setCustomId("projects-" + result.userID)
                 .setLabel("Projects")
                 .setStyle("PRIMARY")
                 .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("occupation")
+                .setCustomId("occupation-" + result.userID)
                 .setLabel("Occupation")
                 .setStyle("PRIMARY")
-                .setEmoji("💲"),
+                .setEmoji("💼"),
               new MessageButton()
-                .setCustomId("quicklinks")
+                .setCustomId("quicklinks-" + result.userID)
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
                 .setEmoji("🔗")
@@ -205,9 +204,15 @@ module.exports = {
                 .setEmoji("🔗")
             );
 
-            await interaction.reply({
+            const rep = await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
+            })
+
+            const collector = message.createMessageComponentCollector({ time: 15000 });
+
+            collector.on('collect', i => {
+              console.log('Collected message')
             });
           }
         });
