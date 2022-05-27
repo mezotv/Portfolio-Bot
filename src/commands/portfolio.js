@@ -43,6 +43,9 @@ module.exports = {
               });
             }
           } else {
+            result.views = result.views + 1;
+            result.save();
+
             let badges = "`None`";
             let verified = "";
             if (result.badges.length !== 0) badges = "";
@@ -57,49 +60,44 @@ module.exports = {
             if (result.badges.includes("featured"))
               badges += "<:Featured:977994686851579906> ";
 
-            const portfolioembed = new MessageEmbed()
+              const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
-              .setTitle(
-                `${verified} ${interaction.options.getUser("user").username
-                }'s portfolio`
-              )
+              .setTitle(`${verified} ${interaction.options.getUser("user").username}'s profile`)
               .setThumbnail(interaction.options.getUser("user").avatarURL())
               .setDescription(`> ${result.description}`)
+              .addField("User Badges:", badges, false)
               .addFields(
-                {
-                  name: "User Badges:",
-                  value: `${badges}`,
-                  inline: false,
-                },
                 {
                   name: "Likes",
                   value: `❤️ ${result.likes.length}`,
-                  inline: false,
+                  inline: true,
                 },
                 {
-                  name: "Portfolio created:",
-                  value: `<t:${result.userSince}:F>`,
-                  inline: false,
+                  name: "Views",
+                  value: `👀 ${result.views}`,
+                  inline: true,
                 }
-              );
+              )
+              .addField("Portfolio created:", `<t:${result.userSince}:F>`, false)
+              .setFooter({ text: `${interaction.options.getUser("user").id}` });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("mainmenu-" + result.userID)
+                .setCustomId("mainmenu-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("projects-" + result.userID)
+                .setCustomId("projects-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
                 .setLabel("Projects")
                 .setStyle("PRIMARY")
                 .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("occupation-" + result.userID)
+                .setCustomId("occupation-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
                 .setLabel("Occupation")
                 .setStyle("PRIMARY")
                 .setEmoji("💼"),
               new MessageButton()
-                .setCustomId("quicklinks-" + result.userID)
+                .setCustomId("quicklinks-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
                 .setEmoji("🔗")
@@ -111,35 +109,28 @@ module.exports = {
             });
             
             setTimeout(function () {
-              components.components[0].setDisabled(true);
-              components.components[1].setDisabled(true);
-              components.components[2].setDisabled(true);
-              components.components[3].setDisabled(true);
-              components.components[4].setDisabled(true);
-    
-              interaction.editReply({embeds: [portfolioembed], components: [components]})
-        
+              try {
+                components.components[0].setDisabled(true);
+                components.components[1].setDisabled(true);
+                components.components[2].setDisabled(true);
+                components.components[3].setDisabled(true);
+                components.components[4].setDisabled(true);
+      
+                interaction.editReply({embeds: [portfolioembed], components: [components]})
+              } catch(e) {
+                return
+              }
             }, 120000);
 
-            const listener =
-              interaction.channel.createMessageComponentCollector();
-            listener.on("collect", async (buttonInteraction) => {
-              switch (buttonInteraction.customId) {
-                default:
-                  const errorembed = new MessageEmbed()
-                    .setColor("RED")
-                    .setTitle("Wopps")
-                    .setDescription(
-                      "This button does not seem to work properly."
-                    );
-
-                 const message = await buttonInteraction.updateReply({
-                    embeds: [errorembed],
-                    ephemeral: true,
-                  });
-                  break;
-              }
-            });
+            // const listener =
+            //   interaction.channel.createMessageComponentCollector();
+            // listener.on("collect", async (buttonInteraction) => {
+            //   switch (buttonInteraction.customId) {
+            //     default:
+                  
+            //       break;
+            //   }
+            // });
           }
         });
     } else {
@@ -156,6 +147,10 @@ module.exports = {
 
             return interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
+
+            result.views = result.views + 1;
+            result.save();
+
             let badges = "`None`";
             let verified = "";
             if (result.badges.length !== 0) badges = "";
@@ -170,61 +165,53 @@ module.exports = {
             if (result.badges.includes("featured"))
               badges += "<:Featured:977994686851579906> ";
 
-            const portfolioembed = new MessageEmbed()
+              const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
               .setTitle(`${verified} ${interaction.user.username}'s profile`)
               .setThumbnail(interaction.user.avatarURL())
               .setDescription(`> ${result.description}`)
+              .addField("User Badges:", badges, false)
               .addFields(
-                {
-                  name: "User Badges:",
-                  value: `${badges}`,
-                  inline: false,
-                },
                 {
                   name: "Likes",
                   value: `❤️ ${result.likes.length}`,
-                  inline: false,
+                  inline: true,
                 },
                 {
-                  name: "Portfolio created:",
-                  value: `<t:${result.userSince}:F>`,
-                  inline: false,
+                  name: "Views",
+                  value: `👀 ${result.views}`,
+                  inline: true,
                 }
-              );
+              )
+              .addField("Portfolio created:", `<t:${result.userSince}:F>`, false)
+              .setFooter({ text: `${interaction.user.id}` });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("mainmenu")
+                .setCustomId("mainmenu-" + interaction.user.id + '__' + interaction.user.id)
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("projects")
+                .setCustomId("projects-" + interaction.user.id + '__' + interaction.user.id)
                 .setLabel("Projects")
                 .setStyle("PRIMARY")
                 .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("occupation")
+                .setCustomId("occupation-" + interaction.user.id + '__' + interaction.user.id)
                 .setLabel("Occupation")
                 .setStyle("PRIMARY")
                 .setEmoji("💼"),
               new MessageButton()
-                .setCustomId("quicklinks")
+                .setCustomId("quicklinks-" + interaction.user.id + '__' + interaction.user.id)
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
                 .setEmoji("🔗")
             );
 
-            const rep = await interaction.reply({
+            await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
             })
-
-            const collector = message.createMessageComponentCollector({ time: 15000 });
-
-            collector.on('collect', i => {
-              console.log('Collected message')
-            });
           }
         });
     }
