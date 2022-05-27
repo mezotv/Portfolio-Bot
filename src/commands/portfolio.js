@@ -133,7 +133,7 @@ module.exports = {
                       "This button does not seem to work properly."
                     );
 
-                  await buttonInteraction.reply({
+                 const message = await buttonInteraction.updateReply({
                     embeds: [errorembed],
                     ephemeral: true,
                   });

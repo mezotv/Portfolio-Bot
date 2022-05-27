@@ -30,6 +30,11 @@ const userschema = new Schema(
       required: false,
       default: []
     },
+    views: {
+      type: Number,
+      required: false,
+      default: 0
+    },
     occupation: {
       type: String,
       required: false,
