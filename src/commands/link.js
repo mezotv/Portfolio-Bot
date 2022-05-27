@@ -219,7 +219,7 @@ module.exports = {
           });
           break;
         case 'instagram':
-          result.links.instagram = `https://www.linkedin.com/in/${interaction.options.getString("instaname")}`;
+          result.links.instagram = `https://www.instagram.com/${interaction.options.getString("instaname")}`;
           result.save();
 
           const instagramembed = new MessageEmbed()
