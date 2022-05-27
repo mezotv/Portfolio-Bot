@@ -3,7 +3,6 @@ const { Routes } = require("discord-api-types/v9");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const { ChalkAdvanced } = require("chalk-advanced");
-const { loadDB } = require("../util/dbHandler");
 
 module.exports = async (client) => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
@@ -40,7 +39,6 @@ module.exports = async (client) => {
         );
 
         console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands locally")}`);
-        loadDB()
       }
     } catch (err) {
       if (err) console.error(err);
