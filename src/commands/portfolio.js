@@ -48,7 +48,7 @@ module.exports = {
 
             let badges = "`None`";
             let verified = "";
-            if (result.badges.length !== 0) badges = "None";
+            if (result.badges.length !== 0) badges = "";
             if (result.badges.includes("staff"))
               badges += "<:Staff:977994687312969738> ";
             if (result.badges.includes("developer"))
@@ -153,7 +153,7 @@ module.exports = {
 
             let badges = "`None`";
             let verified = "";
-            if (result.badges.length !== 0) badges = "None";
+            if (result.badges.length !== 0) badges = "";
             if (result.badges.includes("staff"))
               badges += "<:Staff:977994687312969738> ";
             if (result.badges.includes("developer"))

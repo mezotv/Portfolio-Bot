@@ -17,7 +17,7 @@ module.exports = async (client) => {
       let user = client.users.cache.get(userid);
       let badges = "`None`";
       let verified = "";
-      if (result.badges.length !== 0) badges = "None";
+      if (result.badges.length !== 0) badges = "";
       if (result.badges.includes("staff"))
         badges += "<:Staff:977994687312969738> ";
       if (result.badges.includes("developer"))
