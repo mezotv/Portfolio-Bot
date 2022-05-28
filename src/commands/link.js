@@ -113,7 +113,7 @@ module.exports = {
               .setTitle("Success!")
               .setDescription(
                 `Successfully set your custom website to **${interaction.options.getString(
-                  "github")}**`
+                  "customurl")}**`
               );
 
             return await interaction.reply({
