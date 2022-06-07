@@ -12,7 +12,7 @@ const userschema = require("../util/Schemas/userSchema");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("badge")
-    .setDescription("Manage badges of users")
+    .setDescription("Add/Remove badges from a users")
     .addUserOption((user) =>
       user
         .setRequired(true)
@@ -137,7 +137,6 @@ module.exports = {
           listener.on("collect", async (selectMenu) => {
             if (selectMenu.customId == "badge-select") {
               const badges = selectMenu.values;
-              console.log(badges);
               await badges.forEach(async (badge) => {
                 if (result.badges.findIndex((b) => b == badge) !== -1) {
                   await result.badges.push(badge);
@@ -240,7 +239,6 @@ module.exports = {
           listener.on("collect", async (selectMenu) => {
             if (selectMenu.customId == "badge-select") {
               const badges = selectMenu.values;
-              console.log(badges);
               await badges.forEach(async (badge) => {
                 if (result.badges.findIndex((b) => b == badge) !== -1) {
                   await result.badges.splice(

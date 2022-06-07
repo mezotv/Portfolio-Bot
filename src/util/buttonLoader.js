@@ -17,13 +17,13 @@ module.exports = async (client) => {
       let user = client.users.cache.get(userid);
       let badges = "`None`";
       let verified = "";
-      if (result.badges.length !== 0) badges = "";
+    if (result.badges.length !== 0) badges = "";
       if (result.badges.includes("staff"))
         badges += "<:Staff:977994687312969738> ";
       if (result.badges.includes("developer"))
         badges += "<:Developer:977996164458766396> ";
       if (result.badges.includes("verified"))
-        verified = "<:Verified:977994824038875166> ";
+        verified += "<:Verified:977994824038875166> ";
       if (result.badges.includes("partner"))
         badges += "<:Partner:977994687208116274> ";
       if (result.badges.includes("featured"))
@@ -31,7 +31,7 @@ module.exports = async (client) => {
 
         const portfolioembed = new MessageEmbed()
         .setColor(`${result.embedcolor}`)
-        .setTitle(`${verified} ${user.username}'s profile`)
+        .setTitle(`${user.username}'s profile`)
         .setThumbnail(user.avatarURL())
         .setDescription(`> ${result.description}`)
         .addField("User Badges:", badges, false)

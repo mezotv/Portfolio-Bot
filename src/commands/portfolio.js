@@ -47,23 +47,22 @@ module.exports = {
             result.save();
 
             let badges = "`None`";
-            let verified = "";
             if (result.badges.length !== 0) badges = "";
             if (result.badges.includes("staff"))
               badges += "<:Staff:977994687312969738> ";
             if (result.badges.includes("developer"))
               badges += "<:Developer:977996164458766396> ";
             if (result.badges.includes("verified"))
-              verified = "<:Verified:977994824038875166> ";
+              verified += "<:Verified:977994824038875166>";
             if (result.badges.includes("partner"))
               badges += "<:Partner:977994687208116274> ";
             if (result.badges.includes("featured"))
               badges += "<:Featured:977994686851579906> ";
 
-              const portfolioembed = new MessageEmbed()
+            const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
-              .setTitle(`${verified} ${interaction.options.getUser("user").username}'s profile`)
-              .setThumbnail(interaction.options.getUser("user").avatarURL())
+              .setTitle(`${interaction.user.username}'s profile`)
+              .setThumbnail(interaction.user.avatarURL())
               .setDescription(`> ${result.description}`)
               .addField("User Badges:", badges, false)
               .addFields(
@@ -78,26 +77,50 @@ module.exports = {
                   inline: true,
                 }
               )
-              .addField("Portfolio created:", `<t:${result.userSince}:F>`, false)
+              .addField(
+                "Portfolio created:",
+                `<t:${result.userSince}:F>`,
+                false
+              )
               .setFooter({ text: `${interaction.options.getUser("user").id}` });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("mainmenu-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
+                .setCustomId(
+                  "mainmenu-" +
+                    interaction.options.getUser("user").id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("projects-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
+                .setCustomId(
+                  "projects-" +
+                    interaction.options.getUser("user").id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("Projects")
                 .setStyle("PRIMARY")
                 .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("occupation-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
+                .setCustomId(
+                  "occupation-" +
+                    interaction.options.getUser("user").id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("Occupation")
                 .setStyle("PRIMARY")
                 .setEmoji("💼"),
               new MessageButton()
-                .setCustomId("quicklinks-" + interaction.options.getUser("user").id + '__' + interaction.user.id)
+                .setCustomId(
+                  "quicklinks-" +
+                    interaction.options.getUser("user").id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
                 .setEmoji("🔗")
@@ -107,7 +130,7 @@ module.exports = {
               embeds: [portfolioembed],
               components: [components],
             });
-            
+
             setTimeout(function () {
               try {
                 components.components[0].setDisabled(true);
@@ -115,10 +138,13 @@ module.exports = {
                 components.components[2].setDisabled(true);
                 components.components[3].setDisabled(true);
                 components.components[4].setDisabled(true);
-      
-                interaction.editReply({embeds: [portfolioembed], components: [components]})
-              } catch(e) {
-                return
+
+                interaction.editReply({
+                  embeds: [portfolioembed],
+                  components: [components],
+                });
+              } catch (e) {
+                return;
               }
             }, 120000);
 
@@ -127,7 +153,7 @@ module.exports = {
             // listener.on("collect", async (buttonInteraction) => {
             //   switch (buttonInteraction.customId) {
             //     default:
-                  
+
             //       break;
             //   }
             // });
@@ -147,7 +173,6 @@ module.exports = {
 
             return interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
-
             result.views = result.views + 1;
             result.save();
 
@@ -159,15 +184,15 @@ module.exports = {
             if (result.badges.includes("developer"))
               badges += "<:Developer:977996164458766396> ";
             if (result.badges.includes("verified"))
-              verified = "<:Verified:977994824038875166>";
+              verified += "<:Verified:977994824038875166>";
             if (result.badges.includes("partner"))
               badges += "<:Partner:977994687208116274> ";
             if (result.badges.includes("featured"))
               badges += "<:Featured:977994686851579906> ";
 
-              const portfolioembed = new MessageEmbed()
+            const portfolioembed = new MessageEmbed()
               .setColor(`${result.embedcolor}`)
-              .setTitle(`${verified} ${interaction.user.username}'s profile`)
+              .setTitle(`${interaction.user.username}'s profile`)
               .setThumbnail(interaction.user.avatarURL())
               .setDescription(`> ${result.description}`)
               .addField("User Badges:", badges, false)
@@ -183,26 +208,44 @@ module.exports = {
                   inline: true,
                 }
               )
-              .addField("Portfolio created:", `<t:${result.userSince}:F>`, false)
+              .addField(
+                "Portfolio created:",
+                `<t:${result.userSince}:F>`,
+                false
+              )
               .setFooter({ text: `${interaction.user.id}` });
 
             const components = new MessageActionRow().setComponents(
               new MessageButton()
-                .setCustomId("mainmenu-" + interaction.user.id + '__' + interaction.user.id)
+                .setCustomId(
+                  "mainmenu-" + interaction.user.id + "__" + interaction.user.id
+                )
                 .setLabel("🏠")
                 .setStyle("SUCCESS"),
               new MessageButton()
-                .setCustomId("projects-" + interaction.user.id + '__' + interaction.user.id)
+                .setCustomId(
+                  "projects-" + interaction.user.id + "__" + interaction.user.id
+                )
                 .setLabel("Projects")
                 .setStyle("PRIMARY")
                 .setEmoji("📝"),
               new MessageButton()
-                .setCustomId("occupation-" + interaction.user.id + '__' + interaction.user.id)
+                .setCustomId(
+                  "occupation-" +
+                    interaction.user.id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("Occupation")
                 .setStyle("PRIMARY")
                 .setEmoji("💼"),
               new MessageButton()
-                .setCustomId("quicklinks-" + interaction.user.id + '__' + interaction.user.id)
+                .setCustomId(
+                  "quicklinks-" +
+                    interaction.user.id +
+                    "__" +
+                    interaction.user.id
+                )
                 .setLabel("Quicklinks")
                 .setStyle("PRIMARY")
                 .setEmoji("🔗")
@@ -211,7 +254,7 @@ module.exports = {
             await interaction.reply({
               embeds: [portfolioembed],
               components: [components],
-            })
+            });
           }
         });
     }

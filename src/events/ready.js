@@ -1,8 +1,9 @@
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
+const { Routes } = require("discord-api-types/v10");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const { ChalkAdvanced } = require("chalk-advanced");
+const { FetchWebsite } = require("../util/fetchWebsite");
 
 module.exports = async (client) => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
@@ -29,7 +30,7 @@ module.exports = async (client) => {
           body: commands,
         });
         console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands globally")}`);
-
+        FetchWebsite(client)
       } else {
         await rest.put(
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
