@@ -1,6 +1,5 @@
 /* Requiring the needed libraries */
 const { Collection, Client } = require("discord.js");
-const { FetchWebsite } = require("./util/fetchWebsite");
 
 require("dotenv").config();
 
@@ -32,11 +31,6 @@ require("./util/eventLoader")(client);
 require("./util/buttonLoader")(client);
 require("./util/dbHandler")(client);
 
-setInterval(() => {
-
-  FetchWebsite(client)
-  
-  }, 1.8e+6) 
 
 /* It's creating a new collection for the commands. */
 client.commands = new Collection();
