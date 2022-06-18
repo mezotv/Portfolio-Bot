@@ -40,8 +40,12 @@ module.exports = {
               ephemeral: true,
             });
           }
-          result.views += 1;
-          result.save();
+          try {
+            result.views += 1;
+            result.save();
+          } catch (err) {
+            return;
+          }
 
           let badges = '`None`';
           let verified = '<:notverified:987822352316391424>';
@@ -165,8 +169,12 @@ module.exports = {
 
             return interaction.reply({ embeds: [errorembed], ephemeral: true });
           }
-          result.views += 1;
-          result.save();
+          try {
+            result.views += 1;
+            result.save();
+          } catch (err) {
+            return;
+          }
 
           let badges = '`None`';
           let verified = '<:notverified:987822352316391424>';
