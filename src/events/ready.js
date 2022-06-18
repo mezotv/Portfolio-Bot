@@ -1,18 +1,15 @@
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
-const { readdirSync } = require("fs");
-require("dotenv").config();
-const { ChalkAdvanced } = require("chalk-advanced");
-const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api')
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v10');
+const { readdirSync } = require('fs');
+require('dotenv').config();
+const { ChalkAdvanced } = require('chalk-advanced');
+const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async (client) => {
+  fetchDungeonSingle('portfoliobot', process.env.DEVELOPERSDUNGEON, client);
+  fetchDungeon('portfoliobot', process.env.DEVELOPERSDUNGEON, client);
 
-  fetchDungeonSingle("portfoliobot", process.env.DEVELOPERSDUNGEON, client)
-  fetchDungeon("portfoliobot", process.env.DEVELOPERSDUNGEON, client)
-
-  const commandFiles = readdirSync("./src/commands/").filter((file) =>
-    file.endsWith(".js")
-  );
+  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
 
   const commands = [];
 
@@ -29,29 +26,29 @@ module.exports = async (client) => {
 
   (async () => {
     try {
-      if (process.env.STATUS === "PRODUCTION") { // If the bot is in production mode it will load slash commands for all guilds
+      if (process.env.STATUS === 'PRODUCTION') { // If the bot is in production mode it will load slash commands for all guilds
         await rest.put(Routes.applicationCommands(CLIENT_ID), {
           body: commands,
         });
-        console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands globally")}`);
+        console.log(`${ChalkAdvanced.white('Portfolio Bot')} ${ChalkAdvanced.gray('>')} ${ChalkAdvanced.green('Successfully registered commands globally')}`);
       } else {
         await rest.put(
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
           {
             body: commands,
-          }
+          },
         );
 
-        console.log(`${ChalkAdvanced.white("Portfolio Bot")} ${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green("Successfully registered commands locally")}`);
+        console.log(`${ChalkAdvanced.white('Portfolio Bot')} ${ChalkAdvanced.gray('>')} ${ChalkAdvanced.green('Successfully registered commands locally')}`);
       }
     } catch (err) {
       if (err) console.error(err);
     }
-})();
-setInterval(() => {
-  client.user.setPresence({
-    activities: [{ name: `${process.env.STATUSBOT}` }],
-    status: "dnd",
-  });
-}, 14000);
+  })();
+  setInterval(() => {
+    client.user.setPresence({
+      activities: [{ name: `${process.env.STATUSBOT}` }],
+      status: 'dnd',
+    });
+  }, 14000);
 };

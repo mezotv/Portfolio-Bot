@@ -1,6 +1,4 @@
-const mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
 
 const userschema = new Schema(
   {
@@ -11,7 +9,7 @@ const userschema = new Schema(
     description: {
       type: String,
       required: true,
-      default: "This user has no description yet!",
+      default: 'This user has no description yet!',
     },
     userSince: {
       type: Number,
@@ -20,73 +18,72 @@ const userschema = new Schema(
     embedcolor: {
       type: String,
       required: false,
-      default: "#2f3136",
+      default: '#2f3136',
     },
     badges: {
       type: Array,
       required: false,
-      default: []
+      default: [],
     },
     likes: {
       type: Array,
       required: false,
-      default: []
+      default: [],
     },
     views: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
     occupation: {
       type: String,
       required: false,
-      default: 'Unemployed'
+      default: 'Unemployed :(',
     },
     links: {
       github: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       instagram: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       linkedin: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       twitch: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       youtube: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       twitter: {
         type: String,
         required: false,
-        default: 'none'
+        default: 'none',
       },
       customwebsite: {
         type: String,
         required: false,
-        default: 'none'
-      }
+        default: 'none',
+      },
     },
     projects: {
       type: Array,
       required: false,
-      default: []
-    }
-},
-  { timestamps: true }
+      default: [],
+    },
+  },
+  { timestamps: true },
 );
 
-const User = mongoose.model('userschema', userschema);
-module.exports = User;
+module.exports = model('userschema', userschema);
