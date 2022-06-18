@@ -1,17 +1,12 @@
-const { readdirSync } = require("fs");
-
 module.exports = (interaction) => {
+  if (!interaction.guild) {
+    interaction.reply({
+      content: 'You need to be in a server to use this command.',
+      ephemeral: true,
+    });
+  } else {
   const client = interaction.client;
-  const commandFiles = readdirSync("./src/commands/").filter((file) =>
-    file.endsWith(".js")
-  );
-  const commands = [];
-  for (const file of commandFiles) {
-    const command = require(`../commands/${file}`);
-    commands.push(command.data.toJSON());
-    client.commands.set(command.data.name, command);
-  }
-  if (!interaction.isCommand()) return;
+   if (!interaction.isCommand()) return;
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
   try {
@@ -22,5 +17,6 @@ module.exports = (interaction) => {
       content: "An error occurred while executing that command.",
       ephemeral: true,
     });
+  }
   }
 };

@@ -47,9 +47,11 @@ module.exports = async (client) => {
     } catch (err) {
       if (err) console.error(err);
     }
-  })();
+})();
+setInterval(() => {
   client.user.setPresence({
     activities: [{ name: `${process.env.STATUSBOT}` }],
     status: "dnd",
   });
+}, 14000);
 };
