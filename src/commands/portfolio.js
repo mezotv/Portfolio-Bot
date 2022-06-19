@@ -58,8 +58,8 @@ module.exports = {
 
           const portfolioembed = new MessageEmbed()
             .setColor(`${result.embedcolor}`)
-            .setTitle(`${verified} ${interaction.user.username}'s profile`)
-            .setThumbnail(interaction.user.avatarURL())
+            .setTitle(`${verified} ${interaction.options.getUser('user').username}'s profile`)
+            .setThumbnail(interaction.options.getUser('user').avatarURL())
             .setDescription(`> ${result.description}`)
             .addField('User Badges:', badges, false)
             .addFields(
