@@ -23,6 +23,7 @@ module.exports = {
         embeds: [errorembed],
         ephemeral: true,
       });
+      return;
     }
     userschema
       .findOne({ userId: interaction.options.getUser('user').id })
