@@ -5,7 +5,7 @@ require('dotenv').config();
 module.exports = (client) => {
 /* Basically loading the event loader ironic right */
   require('./eventLoader')(client);
-
+  require('./buttonLoader')(client);
   /* It's creating a new collection for the aliases. */
   client.commands = new Collection();
 
