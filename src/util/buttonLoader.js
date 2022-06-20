@@ -29,7 +29,7 @@ module.exports = async (client) => {
         .setTitle(`${verified} ${user.username}'s profile`)
         .setThumbnail(user.avatarURL())
         .setDescription(`> ${result.description}`)
-        .addField('User Badges:', badges, false)
+        .addField('Titles:', badges, false)
         .addFields(
           {
             name: 'Likes',

@@ -61,7 +61,7 @@ module.exports = {
             .setTitle(`${verified} ${interaction.options.getUser('user').username}'s profile`)
             .setThumbnail(interaction.options.getUser('user').avatarURL())
             .setDescription(`> ${result.description}`)
-            .addField('User Badges:', badges, false)
+            .addField('Titles:', badges, false)
             .addFields(
               {
                 name: 'Likes',
@@ -190,7 +190,7 @@ module.exports = {
             .setTitle(`${verified} ${interaction.user.username}'s profile`)
             .setThumbnail(interaction.user.avatarURL())
             .setDescription(`> ${result.description}`)
-            .addField('User Badges:', badges, false)
+            .addField('Titles:', badges, false)
             .addFields(
               {
                 name: 'Likes',
