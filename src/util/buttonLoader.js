@@ -15,9 +15,16 @@ module.exports = async (client) => {
       const result = await userschema.findOne({ userId: userid });
       const message = interaction.message;
       let user = client.users.cache.get(userid);
+
       let badges = '`None`';
-      let verified;
-      if (result.badges.length !== 0) badges = '';
+      let verified = '<:notverified:987822352316391424>';
+
+      if (result.badges.includes('verified')) {
+        if (result.badges.length === 1) badges = '`None`';
+      } else {
+
+      }
+
       if (result.badges.includes('staff')) badges += '<:Staff:977994687312969738> ';
       if (result.badges.includes('developer')) badges += '<:Developer:977996164458766396> ';
       if (result.badges.includes('verified')) verified = '<:Verified:977994824038875166> ';
