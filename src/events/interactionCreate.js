@@ -5,9 +5,8 @@ module.exports = async (interaction) => {
       ephemeral: true,
     });
   } else {
-    console.log(interaction.isContextMenu());
     const client = interaction.client;
-    if (!interaction.isCommand()) return;
+    if (!interaction.isCommand() && !interaction.isContextMenu()) return;
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
     try {

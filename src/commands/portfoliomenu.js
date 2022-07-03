@@ -8,9 +8,7 @@ module.exports = {
     .setName('Portfolio')
     .setType(2),
   async execute(interaction) {
-    console.log('hehe');
     let user = await interaction.guild.members.fetch(interaction.targetId);
-    interaction.reply('test');
     await userschema
       .findOne({ userId: user.id })
       .then(async (result) => {
