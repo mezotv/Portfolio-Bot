@@ -112,7 +112,6 @@ module.exports = {
         await interaction.reply({
           embeds: [portfolioembed],
           components: [components],
-          ephemeral: true,
         });
 
         setTimeout(() => {
