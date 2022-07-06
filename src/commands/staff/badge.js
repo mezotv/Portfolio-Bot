@@ -5,8 +5,8 @@ const {
   MessageSelectMenu,
 } = require('discord.js');
 
-const { Staff } = require('../../config.json');
-const userschema = require('../util/Schemas/userSchema.ts');
+const { Staff } = require('../../../config.json');
+const userschema = require('../../util/Schemas/userSchema.ts');
 
 module.exports = {
   data: new SlashCommandBuilder()

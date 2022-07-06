@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
-const { readdirSync } = require('fs');
+const { readdirSync, readdir } = require('fs');
 require('dotenv').config();
 const { ChalkAdvanced } = require('chalk-advanced');
 const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
@@ -9,7 +9,16 @@ module.exports = async (client) => {
   fetchDungeonSingle('portfoliobot', process.env.DEVELOPERSDUNGEON, client);
   fetchDungeon('portfoliobot', process.env.DEVELOPERSDUNGEON, client);
 
-  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
+  const folderFiles = readdir('../commands/contextmenus/');
+
+  const folders = [];
+
+  for (const folders of folderFiles) {
+    const folder = require(`../commands/${folders}`);
+    folders.push(folder.data.toJSON());
+  }
+
+  const commandFiles = readdirSync(`../commands/${folders}/`).filter((file) => file.endsWith('.js'));
 
   const commands = [];
 
