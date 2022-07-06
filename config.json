@@ -2,6 +2,10 @@
     "Staff": [
         "347077478726238228",
         "805898988402376725",
-        "381710555096023061"
-    ]
+        "381710555096023061",
+        "453370780387115019"
+    ],
+    "invite": "https://discord.com/oauth2/authorize?client_id=977331811371876352&permissions=0&scope=bot%20applications.commands",
+    "srccode": "https://github.com/mezotv/portfolio-bot",
+    "support": "https://discord.com/invite/NqDGtcB8Zt"
 }
