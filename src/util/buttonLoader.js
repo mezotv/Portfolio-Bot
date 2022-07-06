@@ -49,7 +49,11 @@ module.exports = async (client) => {
             inline: true,
           },
         )
-        .addField('Portfolio created:', `<t:${result.userSince}:F>`, false)
+        .addField(
+          'Portfolio Stats:',
+          `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
+          false,
+        )
         .setFooter({ text: `${user.id}` });
 
       let components = new MessageActionRow().setComponents(

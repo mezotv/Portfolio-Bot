@@ -77,6 +77,7 @@ module.exports = {
         case 'custom':
           if (result.badges.findIndex((b) => b == 'verified') !== -1) {
             result.links.customwebsite = interaction.options.getString('customurl');
+            result.lastEdit = (Date.now() / 1000) | 0;
             result.save();
 
             const verifiedembed = new MessageEmbed()
@@ -107,6 +108,7 @@ module.exports = {
           break;
         case 'github':
           result.links.github = `https://github.com/${interaction.options.getString('githubname')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const githubembed = new MessageEmbed()
@@ -125,6 +127,7 @@ module.exports = {
           break;
         case 'twitter':
           result.links.twitter = `https://twitter.com/${interaction.options.getString('twittername')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const twitterembed = new MessageEmbed()
@@ -143,6 +146,7 @@ module.exports = {
           break;
         case 'twitch':
           result.links.twitch = `https://www.twitch.tv/${interaction.options.getString('twitchname')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const twitchembed = new MessageEmbed()
@@ -161,6 +165,7 @@ module.exports = {
           break;
         case 'youtube':
           result.links.youtube = `https://www.youtube.com/channel/${interaction.options.getString('youtubeid')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const youtubeembed = new MessageEmbed()
@@ -179,6 +184,7 @@ module.exports = {
           break;
         case 'linkedin':
           result.links.youtube = `https://www.linkedin.com/in/${interaction.options.getString('linkedname')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const linkedinembed = new MessageEmbed()
@@ -197,6 +203,7 @@ module.exports = {
           break;
         case 'instagram':
           result.links.instagram = `https://www.instagram.com/${interaction.options.getString('instaname')}`;
+          result.lastEdit = (Date.now() / 1000) | 0;
           result.save();
 
           const instagramembed = new MessageEmbed()

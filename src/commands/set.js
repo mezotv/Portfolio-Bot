@@ -44,6 +44,7 @@ module.exports = {
             await interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
             result.description = interaction.options.getString('content');
+            result.lastEdit = (Date.now() / 1000) | 0;
             result.save();
 
             const savedDescriptionEmbed = new MessageEmbed()
@@ -76,6 +77,7 @@ module.exports = {
             await interaction.reply({ embeds: [errorembed], ephemeral: true });
           } else {
             result.occupation = interaction.options.getString('occupation');
+            result.lastEdit = (Date.now() / 1000) | 0;
             result.save();
 
             const savedOccupationEmbed = new MessageEmbed()
@@ -116,6 +118,7 @@ module.exports = {
             if (checkHex(interaction.options.getString('hex-value'))) {
               color = interaction.options.getString('hex-value');
               result.embedcolor = color;
+              result.lastEdit = (Date.now() / 1000) | 0;
               result.save();
 
               const savedEmbedColor = new MessageEmbed()

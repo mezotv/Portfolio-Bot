@@ -21,6 +21,7 @@ module.exports = {
         userprofile.create({
           userId: interaction.user.id,
           userSince: (Date.now() / 1000) | 0,
+          lastEdit: (Date.now() / 1000) | 0,
         });
         const registerembed = new MessageEmbed()
           .setColor('GREEN')

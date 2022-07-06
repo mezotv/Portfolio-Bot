@@ -61,8 +61,8 @@ module.exports = {
             },
           )
           .addField(
-            'Portfolio created:',
-            `<t:${result.userSince}:F>`,
+            'Portfolio Stats:',
+            `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
             false,
           )
           .setFooter({ text: `${user.id}` });

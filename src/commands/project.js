@@ -55,6 +55,7 @@ module.exports = {
                 name: interaction.options.getString('name'),
                 description: interaction.options.getString('description'),
                 link: interaction.options.getString('link'),
+                lastEdit: (Date.now() / 1000) | 0,
               });
               result.save();
 

@@ -78,8 +78,8 @@ module.exports = {
               },
             )
             .addField(
-              'Portfolio created:',
-              `<t:${result.userSince}:F>`,
+              'Portfolio Stats:',
+              `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
               false,
             )
             .setFooter({ text: `${interaction.options.getUser('user').id}` });
@@ -213,8 +213,8 @@ module.exports = {
               },
             )
             .addField(
-              'Portfolio created:',
-              `<t:${result.userSince}:F>`,
+              'Portfolio Stats:',
+              `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
               false,
             )
             .setFooter({ text: `${interaction.user.id}` });

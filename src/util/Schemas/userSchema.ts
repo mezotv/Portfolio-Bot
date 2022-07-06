@@ -15,6 +15,11 @@ const userschema = new Schema(
       type: Number,
       required: true,
     },
+    lastEdit: {
+      type: Number,
+      required: true,
+      default: (Date.now() / 1000) | 0,
+    },
     embedcolor: {
       type: String,
       required: false,
