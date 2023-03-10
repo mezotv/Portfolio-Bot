@@ -4,9 +4,7 @@
   "description": "Portfolio Bot lets anyone create their own custom portfolio on discord.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "eslint . --fix && ts-node src/index.ts ",
-    "lint": "eslint . --fix"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",

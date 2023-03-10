@@ -6,7 +6,7 @@ const {
 } = require('discord.js');
 
 const { Staff } = require('../../config.json');
-const userschema = require('../util/Schemas/userSchema.ts');
+const userschema = require('../util/Schemas/userSchema.js');
 
 module.exports = {
   data: new SlashCommandBuilder()

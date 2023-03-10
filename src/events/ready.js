@@ -5,7 +5,6 @@ require('dotenv').config();
 const { ChalkAdvanced } = require('chalk-advanced');
 
 module.exports = async (client) => {
-
   const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
 
   const commands = [];

@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
-const userschema = require('../util/Schemas/userSchema.ts');
+const userschema = require('../util/Schemas/userSchema.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -64,7 +64,7 @@ module.exports = {
             .setTitle(`${verified} ${interaction.options.getUser('user').username}'s profile`)
             .setThumbnail(interaction.options.getUser('user').avatarURL())
             .setDescription(`> ${result.description}`)
-            .addField('Titles:', badges, false)
+            .addFields({name: 'Titles:', value: badges, inline: false})
             .addFields(
               {
                 name: 'Likes',
@@ -77,10 +77,11 @@ module.exports = {
                 inline: true,
               },
             )
-            .addField(
-              'Portfolio Stats:',
-              `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
-              false,
+            .addFields({
+              name: 'Portfolio Stats:',
+              value: `**Created:** <t:${result.userSince}:F> \n **Last Edit:** <t:${result.lastEdit}:R>`,
+              inline: false,}
+
             )
             .setFooter({ text: `${interaction.options.getUser('user').id}` });
 

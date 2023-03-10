@@ -3,8 +3,6 @@ const { MessageEmbed } = require('discord.js');
 
 /* Export */
 module.exports = (client, message) => {
-  const { client } = message;
-
   if (message.content == `<@${client.user.id}>`) {
     const msgEmbed = new MessageEmbed()
       .setTitle('> Hey :wave:')
