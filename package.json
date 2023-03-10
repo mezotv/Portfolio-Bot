@@ -33,9 +33,7 @@
     "discord-api-types": "^0.36.0",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.0",
-    "dungeon-api": "^1.0.4",
-    "mongoose": "^6.4.6",
-    "ts-node": "^10.8.1"
+    "mongoose": "^6.4.6"
   },
   "devDependencies": {
     "eslint": "8.19.0",

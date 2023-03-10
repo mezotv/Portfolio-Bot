@@ -2,7 +2,7 @@
 const { MessageEmbed } = require('discord.js');
 
 /* Export */
-module.exports = (message) => {
+module.exports = (client, message) => {
   const { client } = message;
 
   if (message.content == `<@${client.user.id}>`) {

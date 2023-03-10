@@ -1,5 +1,5 @@
 module.exports = async (client) => {
-  const userschema = require('./Schemas/userSchema.ts');
+  const userschema = require('./Schemas/userSchema.js');
   const {
     MessageEmbed,
     MessageActionRow,

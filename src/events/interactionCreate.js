@@ -1,4 +1,4 @@
-module.exports = async (interaction) => {
+module.exports = async (client, interaction) => {
   if (!interaction.guild) {
     interaction.reply({
       content: 'You need to be in a server to use this command.',
