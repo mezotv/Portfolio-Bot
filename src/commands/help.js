@@ -76,10 +76,5 @@ module.exports = {
       embeds: [embed],
       components: [button],
     });
-    setTimeout(() => {
-      button.components[0].setDisabled(true);
-      button.components[1].setDisabled(true);
-      interaction.editReply({ embeds: [embed], components: [button] });
-    }, 120000);
   },
 };
